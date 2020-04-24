@@ -1,0 +1,89 @@
+html, body {
+  background-color: #f8f9f9;
+  overflow-x: hidden;
+}
+
+.splash {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.top-results {
+  background-color: #fff;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(149, 161, 171, .14), 0 1px 2px rgba(149, 161, 171, .24);
+}
+
+.top-results p {
+  font-family: "Inter";
+  margin: 0;
+}
+
+.top-results span {
+  font-family: "InterBold";
+  font-size: 1.1rem;
+}
+
+main {
+  width: 96%;
+  margin: 0 auto;
+  min-height: 70vh;
+}
+
+.card-result {
+  background-color: #fff;
+  padding: 0.1rem 0.2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 1px 3px rgba(149, 161, 171, .14), 0 1px 2px rgba(149, 161, 171, .24);
+  border-radius: 4px;
+}
+
+.card-result img {
+  width: 10rem;
+  height: auto;
+  margin: 0 auto;
+  padding: 0.5rem;
+  display: block;
+}
+
+.card-result-content {
+  padding: 0.5rem 2.5rem;
+}
+
+.game-name {
+  font-family: "InterBold";
+  font-size: 0.666rem;
+  color: #171717;
+  margin: 0;
+}
+
+.set-name {
+  font-size: 0.666rem;
+  font-family: "InterSemiBold";
+  margin: 0;
+  color: #374047;
+}
+
+.card-name {
+  color: #171717;
+  font-size: 17px;
+  font-family: "InterBold";
+}
+
+.card-add {
+  color: #145488;
+  font-family: "InterSemiBold";
+  font-size: 0.9rem;
+}
+
+.auth {
+  margin-top: 4rem;
+  width: 60%;
+  background-color: #fff;
+  padding: 1.4rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  box-shadow: 0 1px 3px rgba(149, 161, 171, .14), 0 1px 2px rgba(149, 161, 171, .24);
+}
