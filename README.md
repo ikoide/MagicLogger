@@ -2,5 +2,3 @@
 
 ## Dependencies
 - tesseract-ocr
-
-## TODO

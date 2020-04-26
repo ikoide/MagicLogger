@@ -28,15 +28,21 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Info</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Auth
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>
-              <a class="dropdown-item" href="#">Register</a>
-            </div>
-          </li>
+          {% if not current_user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Auth
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>
+                <a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('collection') }}">Collection</a>
+            </li>
+          {% endif %}
         </ul>
         <form method="POST" action="" class="form-inline my-2 my-lg-0">
           {{ form.hidden_tag() }}
@@ -59,6 +65,20 @@
       </div>
     </nav>
     <main>
+      <div class="message-area">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
       {% block content %}
       {% endblock %}
     </main>
