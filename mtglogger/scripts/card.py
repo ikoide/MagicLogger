@@ -1,13 +1,12 @@
-from mtgsdk import Card, Set, Type, Supertype, Subtype, Changelog
+import sqlite3
 
-def find_card(query):
-  cards = Card.where(name=query).all()
-  actCards = []
-  totalCards = 0
-  for i in cards:
-    if i.name == query:
-      if i.image_url:
-        totalCards += 1
-        actCards.append(i)
+def get_card(card_name):
+  conn = sqlite3.connect('/home/lan/Documents/MagicLogger/mtglogger/cards.sqlite')
+  c = conn.cursor()
+  c.execute("SELECT name, setCode FROM cards WHERE name=?", (card_name,))
+  rows = c.fetchall()
+  if len(rows) > 0:
+    cards = rows
+  conn.close()
 
-  return actCards, totalCards
+  return cards

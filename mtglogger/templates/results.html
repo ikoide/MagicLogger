@@ -2,19 +2,17 @@
 {% block content %}
   <div class="row row-cols-4">
     {% for i in cards %}
-      {% if i.image_url %}
-        <div class="col">
-          <div class="card-result">
-            <img src="{{ i.image_url }}">
-            <div class="card-result-content">
-              <p class="set-name">Magic: The Gathering</p>
-              <p class="set-name">{{ i.set_name }}</p>
-              <h5 class="card-name">{{ i.name }}</h5>  
-              <p class="card-add"><a href="#">Add</a></p>
-            </div>
+      <div class="col">
+        <div class="card-result">
+          <img src="{{ i.image_url }}">
+          <div class="card-result-content">
+            <p class="set-name">Magic: The Gathering</p>
+            <p class="set-name">{{ i[1] }}</p>
+            <h5 class="card-name">{{ i[0] }}</h5>  
+            <p class="card-add"><a href="#">Add</a></p>
           </div>
         </div>
-      {% endif %}
+      </div>
     {% endfor %}
   </div>
 {% endblock %}

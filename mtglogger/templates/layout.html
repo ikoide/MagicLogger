@@ -45,21 +45,11 @@
           {% endif %}
         </ul>
         <form method="POST" action="" class="form-inline my-2 my-lg-0">
-          {{ form.hidden_tag() }}
           <div class="form-group">
-              {% if form.query.errors %}
-                  {{ form.query(class="form-control is-invalid") }}
-                  <div class="invalid-feedback">
-                      {% for error in form.query.errors %}
-                          <span>{{ error }}</span>
-                      {% endfor %}
-                  </div>
-              {% else %}
-                  {{ form.query(class="form-control mr-sm-2", placeholder="Enter a Card Name") }}
-              {% endif %}
+              <input type="text" placeholder="Enter a card name" class="form-control mr-sm-2">
           </div>
           <div class="form-group">
-              {{ form.search(class="btn btn-outline-primary") }}
+            <button class="btn btn-outline-primary">Search</button>
           </div>
       </form>
       </div>
