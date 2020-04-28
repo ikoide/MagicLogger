@@ -68,4 +68,8 @@ def collection():
 @app.route("/card/<multiverse_id>")
 def card(multiverse_id):
   card = return_card(multiverse_id)
-  return render_template("card.html", title=card["name"], card=card)
+  if card:
+    page_title = card["name"]
+  else:
+    page_title = "Not Valid Card"
+  return render_template("card.html", title=page_title, card=card)

@@ -8,6 +8,7 @@
 # Working On
 
 - Get better at sqlite querying
+- Add custom error pages
 
 # Done
 
@@ -18,3 +19,4 @@
 - Add individual card page
 - Add image url for each card
 - Added better functionality for querying cards
+- Removed a tag from outside columns and put inside

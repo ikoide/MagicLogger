@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if card %}
 <div class="row">
   <div class="col-3">
     <img src="{{ card['image_url'] }}" style="width: 100%;">
@@ -51,4 +52,7 @@
     </div>
   </div>
 </div>
+{% else %}
+  <h1>Not Valid Card</h1>
+{% endif %}
 {% endblock %}

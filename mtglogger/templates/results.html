@@ -2,18 +2,18 @@
 {% block content %}
   <div class="row row-cols-4">
     {% for i in cards %}
-      <a href="{{ url_for('card', multiverse_id=i[2]) }}">
-        <div class="col">
-            <div class="card-result">
-              <img src="{{ i[3] }}">
-              <div class="card-result-content">
-                <p class="game-name">Magic: The Gathering</p>
-                <p class="set-name">{{ i[1] }}</p>
-                <h5 class="card-name">{{ i[0] }}</h5>  
-              </div>
+      <div class="col">
+        <a href="{{ url_for('card', multiverse_id=i[2]) }}">
+          <div class="card-result">
+            <img src="{{ i[3] }}">
+            <div class="card-result-content">
+              <p class="game-name">Magic: The Gathering</p>
+              <p class="set-name">{{ i[1] }}</p>
+              <h5 class="card-name">{{ i[0] }}</h5>  
             </div>
-        </div>
-      </a>
+          </div>
+          </a>
+      </div>
     {% endfor %}
   </div>
 {% endblock %}

@@ -38,18 +38,19 @@ def return_card(id):
   if len(rows) > 0:
     notDictCard = rows[0]
 
-  card = {}
-  card["name"] = notDictCard[0]
-  card["set"] = notDictCard[1]
-  card["id"] = notDictCard[2]
-  card["rarity"] = notDictCard[3]
-  card["originalType"] = notDictCard[4]
-  card["type"] = notDictCard[9]
-  card["power"] = notDictCard[5]
-  card["toughness"] = notDictCard[6]
-  card["text"] = notDictCard[7]
-  card["flavor"] = notDictCard[8]
-  card["image_url"] = str('https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + str(card["id"]) + '&type=card')
-
+    card = {}
+    card["name"] = notDictCard[0]
+    card["set"] = notDictCard[1]
+    card["id"] = notDictCard[2]
+    card["rarity"] = notDictCard[3]
+    card["originalType"] = notDictCard[4]
+    card["type"] = notDictCard[9]
+    card["power"] = notDictCard[5]
+    card["toughness"] = notDictCard[6]
+    card["text"] = notDictCard[7]
+    card["flavor"] = notDictCard[8]
+    card["image_url"] = str('https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + str(card["id"]) + '&type=card')
+  else:
+    card = None
   return card
 
