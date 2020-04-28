@@ -66,10 +66,11 @@ main {
   color: #374047;
 }
 
-.card-name {
+.card-name a {
   color: #171717;
   font-size: 17px;
   font-family: "InterBold";
+  margin-top: 0.4rem;
 }
 
 .card-add {
@@ -87,4 +88,45 @@ main {
   display: block;
   box-shadow: 0 1px 3px rgba(149, 161, 171, .14), 0 1px 2px rgba(149, 161, 171, .24);
   border-radius: 4px;
+}
+
+.title {
+  font-family: "InterBold";
+}
+
+.set {
+  color: #adb5bd;
+  font-family: "InterSemiBold";
+}
+
+.section-title {
+  font-family: "InterBold";
+  margin: 0.1rem;
+  font-size: 0.9rem;
+}
+
+.section-title-content {
+  font-size: 0.9rem;
+  margin: 0.1rem;
+}
+
+.price {
+  font-family: "InterBold";
+}
+
+.content-section {
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  box-shadow: 0 1px 3px rgba(149, 161, 171, .14), 0 1px 2px rgba(149, 161, 171, .24);
+  border-radius: 4px;
+}
+
+.add-btn {
+  font-family: "InterSemiBold";
+  font-size: 0.9rem;
+  width: 100%;
 }

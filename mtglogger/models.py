@@ -12,3 +12,8 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(32), unique=True, nullable=False)
   password = db.Column(db.String(128), nullable=False)
   join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+
+class Card(db.Model, UserMixin):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String, nullable=False)
+  amount = db.Column(db.Integer, nullable=False)

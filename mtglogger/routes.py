@@ -4,9 +4,9 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort, Markup, send_from_directory
 from mtglogger import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
-from mtglogger.forms import SearchForm, LoginForm, RegistrationForm
+from mtglogger.forms import SearchForm, LoginForm, RegistrationForm, AddForm
 from mtglogger.models import User
-from mtglogger.scripts.card import get_card
+from mtglogger.scripts.card import by_name, by_multiverseId, return_card
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -15,7 +15,7 @@ def home():
 
 @app.route("/search/<search_query>", methods=['GET', 'POST'])
 def results(search_query):
-  cards = get_card(search_query)
+  cards = by_name(search_query)
   
   return render_template("results.html", title="Search", cards=cards)
 
@@ -64,3 +64,8 @@ def register():
 @app.route("/collection", methods=['GET', 'POST'])
 def collection():
   return render_template("collection.html", title="Collection")
+
+@app.route("/card/<multiverse_id>")
+def card(multiverse_id):
+  card = return_card(multiverse_id)
+  return render_template("card.html", title=card["name"], card=card)
