@@ -1,4 +1,5 @@
 # MagicLogger
 
-## Dependencies
-- tesseract-ocr
+## Description
+
+A web application created using the Python microframework Flask that allows users to manage their Magic The Gathering card collections. Members are able to utilize various tools to allow them to quickly append their cards to their online collection.
