@@ -8,6 +8,10 @@ from mtglogger.forms import SearchForm, LoginForm, RegistrationForm, AddForm
 from mtglogger.models import User
 from mtglogger.scripts.card import by_name, by_multiverseId, return_card
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errors/404.html', title="404 Error"), 404
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
   
