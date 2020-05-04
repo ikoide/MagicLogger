@@ -33,7 +33,7 @@ def by_multiverseId(id):
 def return_card(id):
   conn = sqlite3.connect('/home/lan/Documents/MagicLogger/mtglogger/cards.sqlite')
   c = conn.cursor()
-  c.execute("SELECT name, setCode, multiverseId, rarity, originalType, power, toughness, text, flavorText, type FROM cards WHERE multiverseId=?", (id,))
+  c.execute("SELECT name, setCode, multiverseId, rarity, originalType, power, toughness, text, flavorText, type, manaCost FROM cards WHERE multiverseId=?", (id,))
   rows = c.fetchall()
   if len(rows) > 0:
     notDictCard = rows[0]
@@ -50,6 +50,7 @@ def return_card(id):
     card["text"] = notDictCard[7]
     card["flavor"] = notDictCard[8]
     card["image_url"] = str('https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + str(card["id"]) + '&type=card')
+    card["manaCost"] = notDictCard[10]
   else:
     card = None
   return card

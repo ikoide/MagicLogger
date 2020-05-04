@@ -70,6 +70,7 @@ def collection():
   act_cards = []
   for i in current_user.cards:
     card = return_card(i.multiverse_id)
+    card["quantity"] = i.quantity
     act_cards.append(card)
   return render_template("collection.html", title="Collection", act_cards=act_cards)
 

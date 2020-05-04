@@ -1,6 +1,67 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="collection-card-header">
+  <div class="row">
+    <div class="col-2">
+      <p>Name</p>
+    </div>
+    <div class="col-1">
+      <p>Cost</p>
+    </div>
+    <div class="col-2">
+      <p>Type</p>
+    </div>
+    <div class="col-1">
+      <p>Set</p>
+    </div>
+    <div class="col-1">
+      <p>Rarity</p>
+    </div>
+    <div class="col-1">
+      <p>Price</p>
+    </div>
+    <div class="col-1">
+      <p>Quantity</p>
+    </div>
+    <div class="col-1">
+      <p>ID</p>
+    </div>
+    <div class="col-2">
+      <p>Actions</p>
+    </div>
+  </div>
+</div>
 {% for i in act_cards %}
-  {{ i.name }}
+  <div class="collection-card">
+    <div class="row">
+      <div class="col-2">
+        <p>{{ i.name }}</p>
+      </div>
+      <div class="col-1">
+        <p>{{ i.manaCost }}</p>
+      </div>
+      <div class="col-2">
+        <p>{{ i.type }}</p>
+      </div>
+      <div class="col-1">
+        <p>{{ i.set }}</p>
+      </div>
+      <div class="col-1">
+        <p>{{ i.rarity.title() }}</p>
+      </div>
+      <div class="col-1">
+        <p>Price</p>
+      </div>
+      <div class="col-1">
+        <p>{{ i.quantity }}</p>
+      </div>
+      <div class="col-1">
+        <p>{{ i.id }}</p>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-danger btn-xsm">Remove</button>
+      </div>
+    </div>
+  </div>
 {% endfor %}
 {% endblock %}
