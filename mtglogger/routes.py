@@ -5,7 +5,7 @@ from flask import render_template, url_for, flash, redirect, request, abort, Mar
 from mtglogger import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from mtglogger.forms import SearchForm, LoginForm, RegistrationForm, AddForm
-from mtglogger.models import User
+from mtglogger.models import User, Card
 from mtglogger.scripts.card import by_name, by_multiverseId, return_card
 
 @app.errorhandler(404)
@@ -67,13 +67,29 @@ def register():
 
 @app.route("/collection", methods=['GET', 'POST'])
 def collection():
-  return render_template("collection.html", title="Collection")
+  act_cards = []
+  for i in current_user.cards:
+    card = return_card(i.multiverse_id)
+    act_cards.append(card)
+  return render_template("collection.html", title="Collection", act_cards=act_cards)
 
-@app.route("/card/<multiverse_id>")
+@app.route("/card/<multiverse_id>", methods=['POST', 'GET'])
 def card(multiverse_id):
   card = return_card(multiverse_id)
   if card:
     page_title = card["name"]
   else:
     page_title = "Not Valid Card"
-  return render_template("card.html", title=page_title, card=card)
+
+  form = AddForm()
+  if form.validate_on_submit():
+    if not current_user.is_authenticated:
+      flash('You must login to add cards to your collection.', 'warning')
+      return redirect(url_for('login'))
+    else:
+      card = Card(multiverse_id=multiverse_id, quantity=form.quantity.data, owner=current_user)
+      db.session.add(card)
+      db.session.commit()
+      return redirect(url_for('collection'))
+
+  return render_template("card.html", title=page_title, form=form, card=card)

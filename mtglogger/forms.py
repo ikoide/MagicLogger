@@ -27,4 +27,6 @@ class RegistrationForm(FlaskForm):
       raise ValidationError('That username is taken. Please choose a different one.')
 
 class AddForm(FlaskForm):
-  add = SubmitField('Add')
+  condition = SelectField('Condition', choices=[('Near Mint', 'Near Mint (NM)'), ('Lightly Played', 'Lightly Played (LP)'), ('Moderately Played', 'Moderatly Played (MP)'), ('Heavily Played', 'Heavily Played (HP)'), ('Damaged', 'Damaged (D)')])
+  quantity = StringField('Quantity', validators=[DataRequired()])
+  add = SubmitField('Add to Collection')

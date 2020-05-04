@@ -13,7 +13,12 @@ class User(db.Model, UserMixin):
   password = db.Column(db.String(128), nullable=False)
   join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
+  cards = db.relationship('Card', backref='owner', lazy=True)
+
 class Card(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String, nullable=False)
-  amount = db.Column(db.Integer, nullable=False)
+  multiverse_id = db.Column(db.String, nullable=False)
+  quantity = db.Column(db.Integer, nullable=False)
+
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+

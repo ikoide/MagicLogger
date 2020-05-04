@@ -33,22 +33,37 @@
   <div class="col-3">
     <div class="content-section">
       <h3 class="price">$37.75</h3>
-      <form>
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
         <div class="form-group">
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Near Mint (NM)</option>
-            <option>Lightly Played (LP)</option>
-            <option>Moderately Played (MP)</option>
-            <option>Heavily Played (HP)</option>
-            <option>Damaged (D)</option>
-          </select>
+          {% if form.condition.errors %}
+          {{ form.condition(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.condition.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+            {{ form.condition(class="form-control") }}
+          {% endif %}
           <p style="margin-top: 0.2rem; font-size: 0.78rem;"><a href="https://www.mtgseattle.com/card_condition_guide" target="_blank" style="color: #145488;">What is my cards condition?</a></p>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Amount">
+          {% if form.quantity.errors %}
+          {{ form.quantity(class="form-control is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.quantity.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+            {{ form.quantity(class="form-control", placeholder="Quantity") }}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.add(class="btn btn-success add-btn") }}
         </div>
       </form>
-      <button class="btn btn-success add-btn"><i class="fas fa-plus"></i> Add to Collection</button>
     </div>
   </div>
 </div>

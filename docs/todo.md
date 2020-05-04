@@ -1,14 +1,15 @@
 # TODO
 
-- Create collection functionality
 - Add card pricings
 - Remove the process of adding form to every route
   - Either by adding it as a (global variable) or removing it from unnecessary pages
+- Add trading
 
 # Working On
 
 - Get better at sqlite querying
 - Add custom error pages
+- Create collection functionality
 
 # Done
 
