@@ -21,4 +21,3 @@ class Card(db.Model, UserMixin):
   quantity = db.Column(db.Integer, nullable=False)
 
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-

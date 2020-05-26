@@ -14,14 +14,23 @@ def page_not_found(e):
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
   
-  return render_template("index.html", title="Home")
+  return render_template("index.html", form=form, title="Home")
 
 @app.route("/search/<search_query>", methods=['GET', 'POST'])
 def results(search_query):
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+  
   cards = by_name(search_query)
   
-  return render_template("results.html", title="Search", cards=cards)
+  return render_template("results.html", form=form, title="Search", cards=cards)
 
 # Auth
 
@@ -44,8 +53,18 @@ def login():
     else:
       flash('Login unsuccessful, please check your username and password.', 'danger')
 
+  form = SearchForm()
 
-  return render_template("auth/login.html", title="Login", loginForm=loginForm)
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+
+  return render_template("auth/login.html", form=form, title="Login", loginForm=loginForm)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -63,34 +82,60 @@ def register():
     flash('Your account has been created! You are now able to login.', 'success')
     return redirect(url_for('login'))
 
-  return render_template("auth/register.html", title="Register", registrationForm=registrationForm)
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+
+  return render_template("auth/register.html", form=form, title="Register", registrationForm=registrationForm)
 
 @app.route("/collection", methods=['GET', 'POST'])
+@login_required
 def collection():
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+  
   act_cards = []
   for i in current_user.cards:
     card = return_card(i.multiverse_id)
     card["quantity"] = i.quantity
     act_cards.append(card)
-  return render_template("collection.html", title="Collection", act_cards=act_cards)
+  return render_template("collection.html", form=form, title="Collection", act_cards=act_cards)
 
 @app.route("/card/<multiverse_id>", methods=['POST', 'GET'])
 def card(multiverse_id):
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+  
   card = return_card(multiverse_id)
   if card:
     page_title = card["name"]
   else:
     page_title = "Not Valid Card"
 
-  form = AddForm()
-  if form.validate_on_submit():
+  addForm = AddForm()
+  if addForm.validate_on_submit():
     if not current_user.is_authenticated:
       flash('You must login to add cards to your collection.', 'warning')
       return redirect(url_for('login'))
     else:
-      card = Card(multiverse_id=multiverse_id, quantity=form.quantity.data, owner=current_user)
+      card = Card(multiverse_id=multiverse_id, quantity=int(addForm.quantity.data), owner=current_user)
       db.session.add(card)
       db.session.commit()
       return redirect(url_for('collection'))
 
-  return render_template("card.html", title=page_title, form=form, card=card)
+  return render_template("card.html", form=form, title=page_title, addForm=addForm, card=card)
+
+@app.route("/trades", methods=['GET', 'POST'])
+@login_required
+def trades():
+  form = SearchForm()
+
+  if form.validate_on_submit():
+    return redirect(url_for('results', search_query=form.query.data))
+  
+  return render_template("trades.html", form=form, title="Trades")

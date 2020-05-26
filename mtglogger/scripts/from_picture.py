@@ -1,3 +1,5 @@
+# Expiremental
+
 from PIL import Image, ImageChops
 from pytesseract import image_to_string
 from mtgsdk import Card, Set, Type, Supertype, Subtype, Changelog

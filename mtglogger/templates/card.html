@@ -32,36 +32,36 @@
   </div>
   <div class="col-3">
     <div class="content-section">
-      <h3 class="price">$37.75</h3>
+      <h3 class="price">Null</h3>
       <form method="POST" action="">
-        {{ form.hidden_tag() }}
+        {{ addForm.hidden_tag() }}
         <div class="form-group">
-          {% if form.condition.errors %}
-          {{ form.condition(class="form-control is-invalid") }}
+          {% if addForm.condition.errors %}
+          {{ addForm.condition(class="form-control is-invalid") }}
           <div class="invalid-feedback">
-            {% for error in form.condition.errors %}
+            {% for error in addForm.condition.errors %}
               <span>{{ error }}</span>
             {% endfor %}
           </div>
           {% else %}
-            {{ form.condition(class="form-control") }}
+            {{ addForm.condition(class="form-control") }}
           {% endif %}
           <p style="margin-top: 0.2rem; font-size: 0.78rem;"><a href="https://www.mtgseattle.com/card_condition_guide" target="_blank" style="color: #145488;">What is my cards condition?</a></p>
         </div>
         <div class="form-group">
-          {% if form.quantity.errors %}
-          {{ form.quantity(class="form-control is-invalid") }}
+          {% if addForm.quantity.errors %}
+          {{ addForm.quantity(class="form-control is-invalid") }}
           <div class="invalid-feedback">
-            {% for error in form.quantity.errors %}
+            {% for error in addForm.quantity.errors %}
               <span>{{ error }}</span>
             {% endfor %}
           </div>
           {% else %}
-            {{ form.quantity(class="form-control", placeholder="Quantity") }}
+            {{ addForm.quantity(class="form-control", placeholder="Quantity") }}
           {% endif %}
         </div>
         <div class="form-group">
-          {{ form.add(class="btn btn-success add-btn") }}
+          {{ addForm.add(class="btn btn-success add-btn") }}
         </div>
       </form>
     </div>
